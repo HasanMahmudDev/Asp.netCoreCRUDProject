@@ -1,0 +1,64 @@
+﻿@model Publisher
+@{
+    ViewData["Title"] = "Create";
+}
+<div class="row">
+    <div class="col-6 offset-2 shadow p-3 mb-5 bg-white rounded">
+        <h3>Create Publisher</h3>
+        <div id="placeholder"></div>
+        <form method="post" asp-action="Create" asp-controller="Publishers" id="fpubliser"
+              data-ajax="true"
+              data-ajax-method="POST"
+              data-ajax-mode="replace"
+              data-ajax-update="#placeholder"
+              data-ajax-success="onSuccess">
+            <div class="form-group row mb-1">
+                <label asp-for="PublisherName" class="col-form-label col-form-label-sm col-2"></label>
+                <div class="col-6">
+                    <input type="text" asp-for="PublisherName" class="form-control form-control-sm" />
+                    <span asp-validation-for="PublisherName" class="text-danger" />
+                </div>
+            </div>
+            <div class="form-group row mb-1">
+                <label asp-for="Establish" class="col-form-label col-form-label-sm col-2"></label>
+                <div class="col-6">
+                    <input type="text" asp-for="Establish" class="form-control form-control-sm" />
+                    <span asp-validation-for="Establish" class="text-danger" />
+                </div>
+            </div>
+            <div class="form-group row mb-1">
+
+                <div class="col-6 offset-2">
+                    <button type="submit" class="btn btn-success">Save</button>
+                </div>
+            </div>
+        </form>
+        <div class="row">
+            <div class="col-6">
+                <a class="btn btn-dark" asp-action="Index" asp-controller="Publishers"><i class="bi bi-layer-backward"></i> Back to Index</a>
+            </div>
+        </div>
+    </div>
+</div>
+@section styles {
+    <link href="~/libs/datepicker/css/bootstrap-datepicker.standalone.css" rel="stylesheet" />
+    <link href="~/libs/icons/font/bootstrap-icons.css" rel="stylesheet" />
+}
+@section scripts {
+    <script src="~/libs/jquery/jquery.js"></script>
+    <script src="~/libs/jquery/jquery.validate.js"></script>
+    <script src="~/libs/jquery/jquery.validate.unobtrusive.js"></script>
+    <script src="~/libs/datepicker/js/bootstrap-datepicker.js"></script>
+    <script src="~/libs/jquery/ajax/jquery.unobtrusive-ajax.js"></script>
+    <script>
+        $("#Establish").datepicker({
+            format: "M dd, yyyy"
+        });
+    </script>
+    <script>
+        function onSuccess() {
+            $("#fpubliser").trigger('reset');
+        }
+    </script>
+
+}

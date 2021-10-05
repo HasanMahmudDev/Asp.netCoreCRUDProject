@@ -1,0 +1,82 @@
+﻿@model PublisherAndBook.ViewModels.BookCreateModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+<div class="container mb-2">
+    <div class="row">
+        <div class="col-8 offset-2 shadow p-3 mb-5 bg-white rounded">
+            <h3>Edit Book:</h3>
+            <form method="post" asp-action="Edit" asp-controller="Books" asp-route-BookId="@Model.BookId" enctype="multipart/form-data">
+                <input type="hidden" asp-for="BookId" />
+                <div class="form-group row mb-2">
+                    <label asp-for="BookName" class="col-form-label col-form-label-sm col-2"></label>
+                    <div class="col-4">
+                        <input type="text" asp-for="BookName" class="form-control form-control-sm" />
+                        <span asp-validation-for="BookName" class="text-danger" />
+                    </div>
+                </div>
+                <div class="form-group row mb-2">
+                    <label asp-for="Price" class="col-form-label col-form-label-sm col-2"></label>
+                    <div class="col-4">
+                        <input type="text" asp-for="Price" class="form-control form-control-sm" />
+                        <span asp-validation-for="Price" class="text-danger" />
+                    </div>
+                </div>
+                <div class="form-group row mb-2">
+                    <label asp-for="PublisherId" class="col-form-label col-form-label-sm col-2"></label>
+                    <div class="col-4">
+                        <select asp-for="PublisherId" class="form-select form-select-sm" asp-items="@(new SelectList(ViewBag.Publishers, "PublisherId", "PublisherName"))" required>
+                            <option selected="selected" value="">Select Publisher</option>
+                        </select>
+                        <span asp-validation-for="PublisherId" class="text-danger" />
+                    </div>
+                </div>
+                <div class="form-group row mb-2">
+                    <label asp-for="Picture" class="col-form-label col-form-label-sm col-2"></label>
+                    <div class="col-4">
+                        <input type="file" asp-for="Picture" class="form-control form-control-sm" />
+                        <span asp-validation-for="Picture" class="text-danger" />
+                    </div>
+                </div>
+                <div class="form-group row mb-2">
+                    <label class="col-form-label col-form-label-sm col-2"> Previous Picture</label>
+                    <div class="col-5">
+                        <img src="/Uploads/@ViewBag.currentPicture" style="width:60px" class="img-thumbnail" />
+                    </div>
+                </div>
+                <div class="form-group row my-1 align-middle">
+                    <label asp-for="Status" class="col-form-label col-form-label-sm col-2"></label>
+                    <div class="col-4">
+                        <input asp-for="Status" type="checkbox" />
+                        <span asp-validation-for="Status" class="text-danger" />
+                    </div>
+                </div>
+                <div class="form-group row mb-2">
+                    <div class="col-4 offset-2">
+                        <button type="submit" class="btn btn-success">Update</button>
+                    </div>
+                </div>
+            </form>
+            <div class="row">
+                <div class="col-8">
+                    <a class="btn btn-dark" asp-action="Index" asp-controller="Books"><i class="bi bi-layer-backward"></i> Back to Index</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+
+@section styles {
+    <link href="~/libs/datepicker/css/bootstrap-datepicker.standalone.css" rel="stylesheet" />
+    <link href="~/libs/icons/font/bootstrap-icons.min.css" rel="stylesheet" />
+}
+@section scripts {
+    <script src="~/libs/jquery/jquery.js"></script>
+    <script src="~/libs/jquery/jquery.validate.js"></script>
+    <script src="~/libs/jquery/jquery.validate.unobtrusive.js"></script>
+    <script src="~/libs/datepicker/js/bootstrap-datepicker.js"></script>
+    <script src="~/libs/jquery/ajax/jquery.unobtrusive-ajax.js"></script>
+}

@@ -1,0 +1,46 @@
+﻿@model IEnumerable<PublisherAndBook.Models.Book>
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="col-8 offset-2 d-flex justify-content-md-between">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 col-sm-6 shadow p-3 mb-5 bg-white rounded">
+                <div class="counter">
+                    <div class="counter-icon">
+                        <i class="bi bi-person-square"></i>
+                    </div>
+                    <span class="counter-value">@ViewBag.PublisherCount</span>
+                    <h3>Publisher</h3>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 shadow p-3 mb-5 bg-white rounded">
+                <div class="counter blue">
+                    <div class="counter-icon">
+                        <i class="bi bi-book-half"></i>
+                    </div>
+                    @{ int rowNo = 0; }
+
+                    @foreach (var item in Model)
+                    {
+                        <!--@(rowNo += 1) -->
+                    }
+                    <span class="counter-value">
+                             @(rowNo)
+                    </span>
+                    <h3>Books</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@section styles {
+    <link href="~/libs/icons/font/bootstrap-icons.min.css" rel="stylesheet" />
+    <link href="~/libs/homepage/Styles.css" rel="stylesheet" />
+}
+@section scripts{
+    <script src="~/libs/homepage/home.js"></script>
+}
+
